@@ -1,2 +1,2 @@
 # AI-Bot
-Bot for an MMO
+AI Bot

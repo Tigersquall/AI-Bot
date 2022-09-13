@@ -3,6 +3,8 @@ import time
 import pyautogui as p
 import torch
 
+screenWidth, screenHeight = p.size()
+
 enemy_searchPosition = 1018, 42
 enemy_searchColor = 86, 73, 67
 
@@ -11,7 +13,7 @@ barEmpty_searchColor = 0, 0, 51
 barHP_searchPosition = 127, 125
 barDS_searchPosition = 130, 141
 
-model = torch.hub.load("D:\\Neural\\yolov5-master", 'custom', path=".\\best.pt", source='local')
+model = torch.hub.load("D:\\Neural\\yolov5-master", 'custom', path=".\\AI-Bot\\best.pt", source='local')
 
 
 def heal_loop():
@@ -23,7 +25,7 @@ def heal_loop():
 
 def search_loop():
     counter = 0
-    while p.locateOnScreen('tai.png'):
+    while p.locateOnScreen('.\\AI-Bot\\tai.png'):
         heal_loop()
         p.press('4')
         if counter < 2:
@@ -54,8 +56,11 @@ def search_loop():
                 p.mouseDown()
                 p.mouseUp()
                 counter = 0
+            else:
+                p.moveTo(screenWidth/2, screenHeight/2)
+                p.drag(10, 0, 1.5, button='right')
 
 
 if __name__ == '__main__':
-    time.sleep(3)
+    time.sleep(2)
     search_loop()

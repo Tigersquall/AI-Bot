@@ -3,7 +3,6 @@ import time
 import PIL.Image
 import pyautogui as p
 import torch
-from PIL import Image
 
 screenWidth, screenHeight = p.size()
 
@@ -30,7 +29,7 @@ def search_loop():
     while p.locateOnScreen(PIL.Image.open('.\\reference')):
         heal_loop()
         p.press('4')
-        if counter < 2:
+        if counter < 3:
             if p.pixel(enemy_searchPosition[0], enemy_searchPosition[1]) == enemy_searchColor:
                 while p.pixel(enemy_searchPosition[0], enemy_searchPosition[1]) == enemy_searchColor:
                     heal_loop()
@@ -46,21 +45,19 @@ def search_loop():
             img = p.screenshot()
             res = model(img)
             dataset = res.pandas().xyxy[0]
-            # print(dataset)
             if dataset.size > 0:
                 xmin = res.pandas().xyxy[0].iat[0, 0]
                 ymin = res.pandas().xyxy[0].iat[0, 1]
                 xmax = res.pandas().xyxy[0].iat[0, 2]
                 ymax = res.pandas().xyxy[0].iat[0, 3]
                 pos = (xmin + xmax)/2, (ymin + ymax)/2
-                # print(pos)
                 p.moveTo(pos)
                 p.mouseDown()
                 p.mouseUp()
-                counter = 0
             else:
                 p.moveTo(screenWidth/2, screenHeight/2)
-                p.drag(20, 0, 1.5, button='right')
+                p.drag(15, 0, 1.5, button='right')
+            counter = 0
 
 
 if __name__ == '__main__':

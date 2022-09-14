@@ -8,6 +8,8 @@ screenWidth, screenHeight = p.size()
 
 enemy_searchPosition = 1018, 42
 enemy_searchColor = 86, 73, 67
+enemyHP_searchPosition = 829, 60
+enemyHP_searchColor = 129, 34, 24
 
 barEmpty_searchColor = 0, 0, 51
 
@@ -30,14 +32,15 @@ def search_loop():
         heal_loop()
         p.press('4')
         if counter < 3:
-            if p.pixel(enemy_searchPosition[0], enemy_searchPosition[1]) == enemy_searchColor:
-                while p.pixel(enemy_searchPosition[0], enemy_searchPosition[1]) == enemy_searchColor:
-                    heal_loop()
-                    p.press('f1')
-                    p.press('f2')
-                    p.press('1')
-                    p.press('4')
-                    counter = 0
+            if p.pixel(enemyHP_searchPosition[0], enemyHP_searchPosition[1]) == enemyHP_searchColor:
+                if p.pixel(enemy_searchPosition[0], enemy_searchPosition[1]) == enemy_searchColor:
+                    while p.pixel(enemyHP_searchPosition[0], enemyHP_searchPosition[1]) == enemyHP_searchColor:
+                        heal_loop()
+                        p.press('f1')
+                        p.press('f2')
+                        p.press('1')
+                        p.press('4')
+                        counter = 0
             else:
                 p.press('tab')
                 counter += 1
@@ -56,10 +59,10 @@ def search_loop():
                 p.mouseUp()
             else:
                 p.moveTo(screenWidth/2, screenHeight/2)
-                p.drag(15, 0, 1.5, button='right')
+                p.drag(400, 0, 0.15, button='right')
             counter = 0
 
 
 if __name__ == '__main__':
-    time.sleep(2)
+    time.sleep(1.5)
     search_loop()

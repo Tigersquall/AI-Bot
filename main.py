@@ -31,16 +31,15 @@ def search_loop():
     while p.locateOnScreen(PIL.Image.open('.\\reference')):
         heal_loop()
         p.press('4')
-        if counter < 3:
-            if p.pixel(enemyHP_searchPosition[0], enemyHP_searchPosition[1]) == enemyHP_searchColor:
-                if p.pixel(enemy_searchPosition[0], enemy_searchPosition[1]) == enemy_searchColor:
-                    while p.pixel(enemyHP_searchPosition[0], enemyHP_searchPosition[1]) == enemyHP_searchColor:
-                        heal_loop()
-                        p.press('f1')
-                        p.press('f2')
-                        p.press('1')
-                        p.press('4')
-                        counter = 0
+        if counter < 2:
+            if p.pixel(enemyHP_searchPosition[0], enemyHP_searchPosition[1]) == enemyHP_searchColor \
+                    and p.pixel(enemy_searchPosition[0], enemy_searchPosition[1]) == enemy_searchColor:
+                p.press('f1')
+                p.press('f2')
+                p.press('1')
+                p.press('4')
+                heal_loop()
+                counter = 0
             else:
                 p.press('tab')
                 counter += 1

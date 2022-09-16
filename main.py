@@ -16,6 +16,7 @@ barEmpty_searchColor = 0, 0, 51
 barHP_searchPosition = 127, 125
 barDS_searchPosition = 130, 141
 
+reference_image = PIL.Image.open('.\\reference')
 model = torch.hub.load("D:\\Neural\\yolov5-master", 'custom', path=".\\best.pt", source='local')
 
 
@@ -28,7 +29,7 @@ def heal_loop():
 
 def search_loop():
     counter = 0
-    while p.locateOnScreen(PIL.Image.open('.\\reference')):
+    while p.locateOnScreen(reference_image):
         heal_loop()
         p.press('4')
         if counter < 2:

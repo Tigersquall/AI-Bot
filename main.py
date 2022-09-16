@@ -12,6 +12,7 @@ enemyHP_searchPosition = 829, 60
 enemyHP_searchColor = 129, 34, 24
 
 barEmpty_searchColor = 0, 0, 51
+barEmpty_searchColor_combat = 69, 5, 54
 
 barHP_searchPosition = 127, 125
 barDS_searchPosition = 130, 141
@@ -24,6 +25,10 @@ def heal_loop():
     if p.pixel(barHP_searchPosition[0], barHP_searchPosition[1]) == barEmpty_searchColor:
         p.press('f7')
     if p.pixel(barDS_searchPosition[0], barDS_searchPosition[1]) == barEmpty_searchColor:
+        p.press('f8')
+    if p.pixel(barHP_searchPosition[0], barHP_searchPosition[1]) == barEmpty_searchColor_combat:
+        p.press('f7')
+    if p.pixel(barDS_searchPosition[0], barDS_searchPosition[1]) == barEmpty_searchColor_combat:
         p.press('f8')
 
 

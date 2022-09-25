@@ -18,7 +18,7 @@ barHP_searchPosition = 127, 125
 barDS_searchPosition = 130, 141
 
 reference_image = PIL.Image.open('.\\reference')
-model = torch.hub.load("D:\\Neural\\yolov5-master", 'custom', path=".\\best.pt", source='local')
+model = torch.hub.load(".\\yolov5-master", 'custom', path=".\\best.pt", source='local')
 
 
 def heal_loop():
